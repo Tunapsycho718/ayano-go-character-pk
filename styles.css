@@ -443,3 +443,30 @@ h1 {
   #home h1 { font-size: clamp(24px, 6.3vw, 36px); line-height: 1.35; overflow-wrap: anywhere; }
   #home .eyebrow { font-size: 15px; }
 }
+
+
+/* 首页主视觉：和文字、按钮一起作为一组垂直居中 */
+#home .home-hero-image {
+  display: block;
+  width: clamp(160px, 25vw, 245px);
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 18px;
+  margin: 0 auto 24px;
+}
+#home .eyebrow {
+  font-size: 19px;
+  line-height: 1.5;
+  letter-spacing: 0.1em;
+}
+#home .header { margin-bottom: 12px; }
+@media (max-width: 700px) {
+  #home .home-hero-image {
+    width: min(49vw, 205px);
+    margin-bottom: 20px;
+    border-radius: 14px;
+  }
+  #home .eyebrow { font-size: 18px; }
+  #home h1 { font-size: clamp(22px, 5.8vw, 34px); }
+}
