@@ -380,3 +380,84 @@ h1 {
 .third-place-card .card-image { aspect-ratio: 1 / 1; }
 .third-place-card .result-character-name { font-size: 16px; }
 .third-place-card .card-work { font-size: 12px; }
+
+
+/* 修复窄屏下二选一对决出现隐式网格列、挤压左侧卡片的问题 */
+@media (max-width: 700px) {
+  .page { padding: 24px 14px 48px; }
+  .arena.two {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+      "left"
+      "vs"
+      "right";
+    gap: 12px;
+    width: min(100%, 390px);
+    margin-inline: auto;
+  }
+  .arena.two .card {
+    width: 100%;
+    min-width: 0;
+  }
+  .arena.two .card-image {
+    width: 100%;
+    aspect-ratio: 5 / 4;
+  }
+  .arena.two .vs {
+    font-size: 19px;
+    line-height: 1.4;
+  }
+  .arena.four {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .arena.four .card { min-width: 0; padding: 10px; }
+  .arena.four .card h2 { font-size: 16px; overflow-wrap: anywhere; }
+  .arena.four .card-work { font-size: 11px; }
+}
+
+
+/* 手机端二选一：两张角色卡等宽并排，VS居中；覆盖旧版单列样式 */
+@media (max-width: 700px) {
+  .arena.two {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 20px minmax(0, 1fr);
+    grid-template-rows: auto;
+    grid-template-areas: "left vs right";
+    gap: 5px;
+    width: 100%;
+    margin: 0 auto;
+    align-items: center;
+  }
+  .arena.two .card {
+    min-width: 0;
+    width: 100%;
+    padding: 9px 6px 11px;
+    border-radius: 14px;
+  }
+  .arena.two .card-image {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    border-radius: 10px;
+  }
+  .arena.two .card h2 {
+    font-size: clamp(13px, 3.7vw, 17px);
+    line-height: 1.35;
+    margin: 8px 0 4px;
+    overflow-wrap: anywhere;
+    word-break: normal;
+  }
+  .arena.two .card-work {
+    font-size: clamp(10px, 2.8vw, 12px);
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+    margin-top: 3px;
+  }
+  .arena.two .vs {
+    font-size: 13px;
+    line-height: 1;
+    text-align: center;
+  }
+  .page { padding-left: 10px; padding-right: 10px; }
+}
