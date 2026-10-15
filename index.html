@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PK Champion</title>
+    <link rel="stylesheet" href="styles.css?v=20261015-72-podium5" />
+  </head>
+  <body>
+    <main class="page">
+      <section id="home" class="screen">
+        <header class="header">
+          <p class="eyebrow">72个角色大PK</p>
+          <h1>决战绫野刚角色之巅</h1>
+          <p class="subtitle">选出你最喜欢的小刚吧！</p>
+        </header>
+        <div class="actions">
+          <button id="start" class="again" type="button">开始</button>
+          <button id="resume" class="ghost hidden" type="button">继续未完成的对局</button>
+        </div>
+
+      </section>
+
+      <section id="play" class="screen hidden">
+        <header class="header">
+          <p id="round-label" class="eyebrow">第一轮｜72 进 18（四选一）</p>
+          <h1 id="match-title">第 1 / 18 组</h1>
+          <p class="subtitle" id="match-subtitle">选出晋级的角色</p>
+          <div class="progress" aria-label="整体进度">
+            <div id="progress-fill" class="progress-fill"></div>
+          </div>
+          <p id="progress-text" class="stats-count">总进度：已完成 0 / 35 次选择</p>
+        </header>
+
+        <section id="arena" class="arena four" aria-label="角色对决">
+          <button class="card" type="button">
+            <div class="card-image"></div>
+            <h2></h2>
+          </button>
+          <button class="card" type="button">
+            <div class="card-image"></div>
+            <h2></h2>
+          </button>
+          <p id="vs-label" class="vs hidden" aria-hidden="true">VS</p>
+          <button class="card" type="button">
+            <div class="card-image"></div>
+            <h2></h2>
+          </button>
+          <button class="card" type="button">
+            <div class="card-image"></div>
+            <h2></h2>
+          </button>
+        </section>
+
+        <div class="actions">
+          <button id="abandon" class="ghost" type="button">放弃本局，回首页</button>
+        </div>
+      </section>
+
+      <section id="finish" class="screen hidden">
+        <header class="header">
+          <p class="result-headline">你心中的小刚角色之巅是</p>
+          <h1 id="champion-name">—</h1>
+          <p id="upload-status" class="stats-note" role="status">正在提交冠军记录……</p>
+        </header>
+        <div class="champion-showcase">
+          <div class="champion-crown" aria-label="冠军皇冠">👑</div>
+          <div id="champion-card" class="champion-card"></div>
+        </div>
+        <section class="runner-up-section" aria-label="亚军">
+          <div class="runner-up-medal" aria-label="亚军银色奖牌">🥈</div>
+          <p class="runner-up-title">亚军</p>
+          <div id="runner-up-card" class="runner-up-card"></div>
+          <span id="runner-up-name" class="hidden" aria-hidden="true"></span>
+        </section>
+        <section class="third-place-section" aria-label="季军">
+          <div class="third-place-medal" aria-label="季军铜牌">🥉</div>
+          <p class="third-place-title">季军</p>
+          <div id="third-place-card" class="third-place-card"></div>
+        </section>
+        <section class="stats" aria-label="全站冠军统计">
+          <h3>全站冠军统计</h3>
+          <p id="global-stats-note" class="stats-note">正在加载全站统计……</p>
+          <div id="global-stats-bars" class="bars"></div>
+        </section>
+        <div class="actions">
+          <button id="again" class="again" type="button">再开一轮</button>
+          <button id="back-home" class="ghost" type="button">回到首页</button>
+        </div>
+      </section>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase.js"></script>
+    <script src="characters.js?v=20261015-72-podium5"></script>
+    <script src="app.js?v=20261015-72-podium5"></script>
+  </body>
+</html>
