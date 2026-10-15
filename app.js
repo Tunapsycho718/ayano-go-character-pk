@@ -1,3 +1,18 @@
+// 每次进入首页随机展示一张图片，不会改变原图的长宽比例。
+const HOME_GALLERY_IMAGES = ["assets/home-gallery/home-01.jpg", "assets/home-gallery/home-02.jpg", "assets/home-gallery/home-03.jpg", "assets/home-gallery/home-04.jpg", "assets/home-gallery/home-05.jpg", "assets/home-gallery/home-06.jpg", "assets/home-gallery/home-07.jpg", "assets/home-gallery/home-08.jpg", "assets/home-gallery/home-09.jpg", "assets/home-gallery/home-10.jpg"];
+let lastHomeGalleryIndex = -1;
+function refreshHomeGallery() {
+  const image = document.getElementById("home-gallery-image");
+  if (!image || !HOME_GALLERY_IMAGES.length) return;
+  let index = Math.floor(Math.random() * HOME_GALLERY_IMAGES.length);
+  if (HOME_GALLERY_IMAGES.length > 1 && index === lastHomeGalleryIndex) {
+    index = (index + 1 + Math.floor(Math.random() * (HOME_GALLERY_IMAGES.length - 1))) % HOME_GALLERY_IMAGES.length;
+  }
+  lastHomeGalleryIndex = index;
+  image.src = HOME_GALLERY_IMAGES[index];
+  image.alt = "绫野刚首页随机照片";
+}
+
 const GAME_CHARACTER_COUNT = 72;
 const TOTAL_MATCHES = 35;
 const TOURNAMENT_KEY = "pk-champion-tournament-v6-72-thirdplace";
@@ -122,6 +137,7 @@ function saveTournament() {
 }
 
 function showScreen(screen) {
+  if (screen === "home") refreshHomeGallery();
   homeScreen.classList.toggle("hidden", screen !== "home");
   playScreen.classList.toggle("hidden", screen !== "play");
   finishScreen.classList.toggle("hidden", screen !== "finish");
@@ -563,3 +579,6 @@ document.getElementById("back-home").addEventListener("click", () => {
 });
 
 updateResumeButton();
+
+// 首次打开网站也随机选一张。
+refreshHomeGallery();

@@ -649,3 +649,103 @@ body {
   .round-review-section h3 { font-size: 18px; }
   .review-name { font-size: 12px; }
 }
+
+
+/* 2026-10-16：首页随机图库，统一图片高度、保留原始比例 */
+#home .home-gallery-stage {
+  width: min(100%, 440px);
+  height: 225px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin: 0 auto 10px;
+  flex-shrink: 0;
+}
+#home .home-gallery-stage .home-hero-image {
+  display: block;
+  width: auto;
+  height: 100%;
+  max-width: 100%;
+  aspect-ratio: auto;
+  object-fit: contain;
+  border-radius: 14px;
+  margin: 0;
+}
+@media (max-width: 700px) {
+  #home .home-gallery-stage {
+    width: min(100%, 380px);
+    height: clamp(140px, 42vw, 180px);
+    margin-bottom: 8px;
+  }
+  #home .home-gallery-stage .home-hero-image {
+    width: auto;
+    height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    margin: 0;
+  }
+}
+
+/* 轻柔的浅粉、浅黄配色：柔雾粉 + 奶油黄 + 可读性较高的棕灰字 */
+:root {
+  color-scheme: light;
+  --bg: #fff7f2;
+  --card: #fffdfa;
+  --line: #eadcd7;
+  --text: #584d4d;
+  --muted: #887c7c;
+  --accent: #bc8493;
+  --win: #e7c27e;
+  --soft-sage: #fff0ec;
+  --soft-rose: #f8e4e9;
+}
+body {
+  background: radial-gradient(ellipse at 30% 4%, #fff0d8 0%, #fff5ef 39%, #fff0f1 78%, #fff9f3 100%);
+  color: var(--text);
+}
+.card {
+  background: #fffdfa;
+  border-color: #ebd9da;
+  box-shadow: 0 4px 16px rgba(128,82,91,.075);
+}
+.card:hover, .card:focus-visible {
+  border-color: #ca95a3;
+  box-shadow: 0 6px 20px rgba(166,104,117,.14);
+}
+.card-image { background: #f7e9e5; }
+.progress, .bar-track { background: #f5e2de; }
+.progress-fill, .bar-fill { background: linear-gradient(90deg, #db9eae, #e8c27f); }
+.again {
+  background: #f1c7aa;
+  border: 1px solid #e5b494;
+  color: #59413c;
+}
+.again:hover { background: #e9b89c; }
+.ghost {
+  background: rgba(255,253,250,.82);
+  border-color: #e8d5d0;
+  color: var(--text);
+}
+.stats {
+  background: rgba(255,253,249,.91);
+  border-color: #eddcda;
+}
+.champion-card { border-color: #e4be7d; }
+.champion-card, .runner-up-card, .third-place-card {
+  background: #fffefa;
+  box-shadow: 0 4px 18px rgba(158,103,107,.07);
+}
+#home .eyebrow, #finish .result-headline, .vs { color: #b68190; }
+.round-review-section {
+  background: #fff5ed;
+  border-color: #eedbd3;
+}
+.round-review-section h3 { color: #a56f80; }
+.round-review { gap: 20px; }
+.review-round { border-bottom-color: #eadbd7; }
+.review-round h4 { color: #aa7785; }
+.review-name {
+  background: #fffdf8;
+  color: #665357;
+  border-color: #f0deda;
+}
