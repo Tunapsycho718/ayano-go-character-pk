@@ -771,3 +771,7 @@ body {
   #home .creator-credit { margin-top: 24px; }
   #finish .creator-credit { margin: 4px auto 24px; }
 }
+
+/* PK 过程页：署名置于按钮下方，页面底部 */
+#play .creator-credit { margin: 26px auto 12px; }
+@media (max-width: 700px) { #play .creator-credit { margin: 22px auto 14px; } }
