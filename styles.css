@@ -470,3 +470,43 @@ h1 {
   #home .eyebrow { font-size: 18px; }
   #home h1 { font-size: clamp(22px, 5.8vw, 34px); }
 }
+
+
+/* 2026-10-15：首页图片保持原图比例；三段标题文字之间统一间距 */
+#home .header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+#home .home-hero-image {
+  display: block;
+  width: min(245px, 65vw);
+  height: auto;
+  aspect-ratio: auto;
+  object-fit: contain;
+  max-width: 100%;
+  border-radius: 16px;
+  margin: 0 0 10px;
+}
+#home .header > .eyebrow,
+#home .header > h1,
+#home .header > .subtitle {
+  margin: 0;
+  padding: 0;
+}
+#home .header > .eyebrow { font-size: 19px; line-height: 1.45; }
+#home .header > h1 { line-height: 1.35; }
+#home .header > .subtitle { line-height: 1.5; }
+@media (max-width: 700px) {
+  #home .home-hero-image {
+    width: min(230px, 66vw);
+    height: auto;
+    aspect-ratio: auto;
+    object-fit: contain;
+    margin: 0 0 8px;
+  }
+  #home .header { gap: 12px; }
+  #home .header > .eyebrow { font-size: 18px; }
+}
