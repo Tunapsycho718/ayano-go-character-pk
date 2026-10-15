@@ -749,3 +749,25 @@ body {
   color: #665357;
   border-color: #f0deda;
 }
+
+
+/* 制作署名：低调、与浅粉浅黄配色融合 */
+.creator-credit {
+  text-align: center;
+  color: #a28d91;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: .015em;
+  max-width: 100%;
+  padding: 0 12px;
+}
+.creator-credit p { margin: 0; overflow-wrap: anywhere; }
+.creator-credit p + p { margin-top: 3px; }
+#home .creator-credit { margin-top: 28px; }
+#finish .creator-credit { margin: 4px auto 30px; }
+@media (max-width: 700px) {
+  .creator-credit { font-size: 10px; line-height: 1.7; }
+  #home .creator-credit { margin-top: 24px; }
+  #finish .creator-credit { margin: 4px auto 24px; }
+}
