@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>PK Champion</title>
-    <link rel="stylesheet" href="styles.css?v=20261015-home-original-ratio-v4" />
+    <link rel="stylesheet" href="styles.css?v=20261016-morandi-review-v1" />
   </head>
   <body>
     <main class="page">
@@ -68,7 +68,8 @@
           <div class="champion-crown" aria-label="冠军皇冠">👑</div>
           <div id="champion-card" class="champion-card"></div>
         </div>
-        <section class="runner-up-section" aria-label="亚军">
+        <div class="podium-secondary" aria-label="亚军及季军">
+          <section class="runner-up-section" aria-label="亚军">
           <div class="runner-up-medal" aria-label="亚军银色奖牌">🥈</div>
           <p class="runner-up-title">亚军</p>
           <div id="runner-up-card" class="runner-up-card"></div>
@@ -78,6 +79,12 @@
           <div class="third-place-medal" aria-label="季军铜牌">🥉</div>
           <p class="third-place-title">季军</p>
           <div id="third-place-card" class="third-place-card"></div>
+        </section>
+        </div>
+        <section class="round-review-section" aria-label="本局每轮晋级角色">
+          <h3>你的晋级角色回顾</h3>
+          <p class="round-review-hint">这一路，你选择了他们 ✨</p>
+          <div id="round-review" class="round-review"></div>
         </section>
         <section class="stats" aria-label="全站冠军统计">
           <h3>全站冠军统计</h3>
@@ -93,6 +100,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="supabase.js"></script>
     <script src="characters.js?v=20261015-72-podium5"></script>
-    <script src="app.js?v=20261015-72-podium5"></script>
+    <script src="app.js?v=20261016-morandi-review-v1"></script>
   </body>
 </html>

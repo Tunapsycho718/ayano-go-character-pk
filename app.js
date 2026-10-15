@@ -41,6 +41,7 @@ const championCard = document.getElementById("champion-card");
 const runnerUpName = document.getElementById("runner-up-name");
 const runnerUpCard = document.getElementById("runner-up-card");
 const thirdPlaceCard = document.getElementById("third-place-card");
+const roundReview = document.getElementById("round-review");
 
 // 游戏固定使用 characters.js 中的全部 72 位角色。
 const GAME_CHARACTERS = window.CHARACTERS || [];
@@ -333,6 +334,7 @@ function startTournament() {
     thirdPlaceCandidates: [],
     thirdPlaceId: null,
     finalists: [],
+    advancementHistory: [],
   };
 
   ensureCurrentMatch();
@@ -364,6 +366,41 @@ function renderResultCard(card, character) {
   card.append(name, work);
 }
 
+// 每轮晋级名单在该轮结束时保存；包括随机轮空的角色。
+function rememberAdvancement(title, ids) {
+  if (!tournament) return;
+  if (!Array.isArray(tournament.advancementHistory)) {
+    tournament.advancementHistory = [];
+  }
+  tournament.advancementHistory.push({
+    title,
+    ids: [...ids],
+  });
+}
+
+function renderAdvancementReview(history) {
+  if (!roundReview) return;
+  roundReview.replaceChildren();
+  for (const item of history) {
+    const section = document.createElement("section");
+    section.className = "review-round";
+    const title = document.createElement("h4");
+    title.textContent = item.title;
+    const list = document.createElement("div");
+    list.className = "review-names";
+    for (const id of item.ids) {
+      const character = charactersById[id];
+      if (!character) continue;
+      const entry = document.createElement("span");
+      entry.className = "review-name";
+      entry.textContent = `${character.name} · 《${character.work}》`;
+      list.appendChild(entry);
+    }
+    section.append(title, list);
+    roundReview.appendChild(section);
+  }
+}
+
 async function finishTournament(championId, runnerUpId, thirdPlaceId) {
   const character = charactersById[championId];
   if (!character) {
@@ -371,9 +408,14 @@ async function finishTournament(championId, runnerUpId, thirdPlaceId) {
     return;
   }
 
+  // 最终冠亚季军也纳入本局选择记录，但不影响原有上传逻辑。
+  rememberAdvancement("季军争夺战 · 季军", [thirdPlaceId]);
+  rememberAdvancement("冠军决赛 · 冠军", [championId]);
+  const advancementHistory = [...(tournament.advancementHistory || [])];
   tournament = null;
   saveTournament();
   updateResumeButton();
+  renderAdvancementReview(advancementHistory);
   championName.textContent = character.name;
   renderResultCard(championCard, character);
   const runnerUp = charactersById[runnerUpId];
@@ -404,6 +446,7 @@ async function finishTournament(championId, runnerUpId, thirdPlaceId) {
 }
 
 function transitionToRound18() {
+  rememberAdvancement("第一轮 · 72 进 18", tournament.winners);
   const qualifiers = shuffle(tournament.winners);
   tournament.phase = "round18";
   tournament.remaining = qualifiers;
@@ -413,6 +456,7 @@ function transitionToRound18() {
 }
 
 function transitionToRound9() {
+  rememberAdvancement("第二轮 · 18 进 9", tournament.winners);
   const qualifiers = shuffle(tournament.winners);
   const bye = qualifiers.splice(Math.floor(Math.random() * qualifiers.length), 1)[0];
   tournament.phase = "round9";
@@ -423,6 +467,7 @@ function transitionToRound9() {
 }
 
 function transitionToGroup5() {
+  rememberAdvancement("第三轮 · 9 进 5（含轮空）", tournament.winners);
   const qualifiers = shuffle(tournament.winners);
   tournament.phase = "group5";
   tournament.remaining = [];
@@ -476,6 +521,7 @@ function chooseWinner(id) {
     tournament.group5Index += 1;
     if (tournament.group5Index >= 2) {
       const finalists = shuffle(tournament.winners);
+      rememberAdvancement("第四轮 · 5 进 2", tournament.winners);
       tournament.phase = "thirdPlace";
       tournament.finalists = finalists;
       tournament.winners = [];

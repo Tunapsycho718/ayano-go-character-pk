@@ -510,3 +510,142 @@ h1 {
   #home .header { gap: 12px; }
   #home .header > .eyebrow { font-size: 18px; }
 }
+
+
+/* 2026-10-16: Morandi 浅色主题 */
+:root {
+  color-scheme: light;
+  --bg: #f6f3ef;
+  --card: #fffdf9;
+  --line: #dcdad5;
+  --text: #414b4b;
+  --muted: #788280;
+  --accent: #8d8276;
+  --win: #b4ad80;
+  --soft-sage: #dce5de;
+  --soft-rose: #f0e6e2;
+}
+body {
+  background: radial-gradient(circle at top, #e9e9e3 0, #f6f3ef 43%, #f9f7f4 100%);
+  color: var(--text);
+}
+.card {
+  box-shadow: 0 3px 16px rgba(79,82,76,.055);
+}
+.card:hover, .card:focus-visible {
+  border-color: #a4ada3;
+  box-shadow: 0 7px 22px rgba(89,102,93,.13);
+}
+.card-image { background: #e7e7e0; }
+.progress, .bar-track { background: #e6e8e3; }
+.progress-fill, .bar-fill { background: #a3b6a6; }
+.again {
+  background: #a6b6a6;
+  color: #25352e;
+  border: 1px solid #91a795;
+}
+.again:hover { background: #95a997; }
+.ghost {
+  background: rgba(255,255,255,.62);
+  border-color: #cbd3ce;
+  color: var(--text);
+}
+.stats {
+  background: rgba(255,253,249,.82);
+  border-color: var(--line);
+}
+.champion-card { border-color: #c0b38a; }
+.champion-card, .runner-up-card, .third-place-card {
+  background: var(--card);
+  box-shadow: 0 4px 19px rgba(83,85,74,.05);
+}
+#home .eyebrow, #finish .result-headline, .vs {
+  color: #7e8e82;
+}
+
+/* 亚军、季军等宽并排并作为整体居中 */
+.podium-secondary {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 210px));
+  justify-content: center;
+  align-items: start;
+  gap: clamp(12px, 3vw, 30px);
+  margin: 20px auto 30px;
+  width: 100%;
+}
+.podium-secondary .runner-up-section,
+.podium-secondary .third-place-section {
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  text-align: center;
+}
+.podium-secondary .runner-up-card,
+.podium-secondary .third-place-card {
+  width: 100%;
+  box-sizing: border-box;
+}
+.podium-secondary .result-character-name {
+  overflow-wrap: anywhere;
+}
+
+/* 结果页分轮晋级记录：仅文字，不加载照片 */
+.round-review-section {
+  max-width: 760px;
+  margin: 12px auto 24px;
+  padding: clamp(16px, 3vw, 26px);
+  border: 1px solid #d9e0d8;
+  background: #f2f5ef;
+  border-radius: 20px;
+}
+.round-review-section h3 {
+  margin: 0 0 6px;
+  color: #566b60;
+  font-size: 20px;
+  text-align: center;
+}
+.round-review-hint {
+  color: var(--muted);
+  font-size: 13px;
+  margin: 0 0 22px;
+  text-align: center;
+}
+.round-review { display: grid; gap: 20px; }
+.review-round {
+  padding-bottom: 16px;
+  border-bottom: 1px solid #d7ddd4;
+}
+.review-round:last-child { border: 0; padding-bottom: 0; }
+.review-round h4 {
+  color: #657b6e;
+  font-size: 14px;
+  margin: 0 0 10px;
+}
+.review-names {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.review-name {
+  font-size: 13px;
+  line-height: 1.5;
+  color: #48554e;
+  background: #fffefa;
+  padding: 7px 10px;
+  border: 1px solid #dce2da;
+  border-radius: 11px;
+  overflow-wrap: anywhere;
+}
+@media (max-width: 700px) {
+  .podium-secondary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 440px;
+    gap: 12px;
+  }
+  .podium-secondary .runner-up-card,
+  .podium-secondary .third-place-card { padding: 8px; }
+  .podium-secondary .result-character-name { font-size: 15px; }
+  .podium-secondary .card-work { font-size: 11px; }
+  .round-review-section h3 { font-size: 18px; }
+  .review-name { font-size: 12px; }
+}
