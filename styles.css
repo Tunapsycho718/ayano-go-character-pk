@@ -436,3 +436,10 @@ h1 {
   }
   .arena.two .vs { font-size: 12px; line-height: 1; text-align: center; }
 }
+
+/* 首页小标题略放大，其余比赛页面不受影响 */
+#home .eyebrow { font-size: 15px; line-height: 1.5; }
+@media (max-width: 700px) {
+  #home h1 { font-size: clamp(24px, 6.3vw, 36px); line-height: 1.35; overflow-wrap: anywhere; }
+  #home .eyebrow { font-size: 15px; }
+}
